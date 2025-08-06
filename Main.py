@@ -6,13 +6,20 @@ import yt_dlp
 
 def spotify_playlist(link):
     client_id = '4bcbba261e9641129fd3bfd08a6e72eb'
-    client_secret = ''
+    client_secret = 'dc055e351e2e4530943cb1e9ef7e0a67'
 
     auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(auth_manager=auth_manager)
 
-    playlist_link = link
-    playlist_id = playlist_link[(playlist_link.rfind("/")+1):]
+    playlist_link = link.strip()
+    if not playlist_link.startswith("https://open.spotify.com/playlist/"):
+        print("Error: Invalid Spotify playlist URL.")
+        return None
+    try:
+        playlist_id = playlist_link.split("/")[-1].split("?")[0]
+    except IndexError:
+        print("Error: Invalid playlist URL.")
+        return None
 
     songs = []
     limit = 100
