@@ -1,12 +1,13 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import yt_dlp
+#version 1.0.0
 
 
 
 def spotify_playlist(link):
-    client_id = '4bcbba261e9641129fd3bfd08a6e72eb'
-    client_secret = 'dc055e351e2e4530943cb1e9ef7e0a67'
+    client_id = ''
+    client_secret = ''
 
     auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(auth_manager=auth_manager)
