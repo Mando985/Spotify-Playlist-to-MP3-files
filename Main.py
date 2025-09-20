@@ -1,13 +1,17 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 import yt_dlp
-#version 1.0.0
+import os
+#version 1.1.0
 
 
 
 def spotify_playlist(link):
-    client_id = ''
-    client_secret = ''
+    with open("credentials.txt") as f:
+        client_id = f.readline().strip()
+        client_secret = f.readline().strip()
+        
+    
 
     auth_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
     sp = spotipy.Spotify(auth_manager=auth_manager)
@@ -58,7 +62,37 @@ def Playlist_Downloader(Songs):
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([f"ytsearch1:{song[0]} {song[1]} lyrics"])
 
-link=input("Paste the link of the playlist (MUST BE A PUBLIC PLAYLIST):\n")
-Songs=spotify_playlist(link);    
-Playlist_Downloader(Songs);
 
+
+
+
+def Main():
+    if os.path.isfile("credentials.txt"):
+        
+        choice=int(input("[1] Download the playlist\n[2] Re-enter the credentials\n==>"))
+        if choice == 1:
+            link=input("Paste the link of the playlist (MUST BE A PUBLIC PLAYLIST):\n")
+            Songs=spotify_playlist(link);    
+            Playlist_Downloader(Songs);
+        elif choice ==2:
+            with open("credentials.txt","w") as f:
+                id=input("Enter your Spotify Client ID:\n")
+                f.write(id)
+                s_id=input("Enter your client secret ID:\n")
+                f.write(s_id)
+            Main()
+        
+        else:
+            print("Please enter a valid option")
+            Main()
+
+        
+    else:
+        with open("credentials.txt","w") as f:
+            id=input("Enter your Spotify Client ID:\n")
+            f.write(id)
+            s_id=input("Enter your client secret ID:\n")
+            f.write(s_id)
+        Main()
+
+Main()
