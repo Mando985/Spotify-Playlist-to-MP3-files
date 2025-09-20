@@ -71,14 +71,14 @@ def Main():
         
         choice=int(input("[1] Download the playlist\n[2] Re-enter the credentials\n==>"))
         if choice == 1:
-            link=input("Paste the link of the playlist (MUST BE A PUBLIC PLAYLIST):\n")
+            link=input("Paste the link of the playlist (MUST BE A PUBLIC PLAYLIST):\n==>")
             Songs=spotify_playlist(link);    
             Playlist_Downloader(Songs);
         elif choice ==2:
             with open("credentials.txt","w") as f:
-                id=input("Enter your Spotify Client ID:\n")
+                id=input("Enter your Spotify Client ID:\n==>")
                 f.write(id)
-                s_id=input("Enter your client secret ID:\n")
+                s_id=input("Enter your client secret ID:\n==>")
                 f.write(s_id)
             Main()
         
@@ -89,9 +89,9 @@ def Main():
         
     else:
         with open("credentials.txt","w") as f:
-            id=input("Enter your Spotify Client ID:\n")
+            id=input("Enter your Spotify Client ID:\n==>")
             f.write(id)
-            s_id=input("Enter your client secret ID:\n")
+            s_id=input("Enter your client secret ID:\n==>")
             f.write(s_id)
         Main()
 
