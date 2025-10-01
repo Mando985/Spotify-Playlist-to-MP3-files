@@ -85,10 +85,15 @@ def get_playlist_tracks(playlist_url):
             tracks.append((name, first_artist))
         url = resp.get("next")
 
-    table=PrettyTable()
-    table.field_names=["Index","Title","Artist"]
-    for i in range(len(tracks)):
-        table.add_row([i+1,tracks[i][0],tracks[i][1]])
+    table = PrettyTable()
+    table.field_names = ["#", "Title", "Artist"]
+    table.max_width["Title"] = 40   
+    table.max_width["Artist"] = 30  
+    table.align["Title"] = "l"
+    table.align["Artist"] = "l"
+
+    for i, (title, artist) in enumerate(tracks, 1):
+        table.add_row([i, title, artist])
 
     print(table)
     
