@@ -4,17 +4,10 @@ Reads names of the songs in your public Spotify Playlist and downloads them usin
 
 ## Prerequisites 
 
-
-1. Go to [Spotify API](https://developer.spotify.com/dashboard) and go to dashboard.**WARNING! Your account may get suspended so use spare account for this.**
-
-2. Create an app, set the uri as https://localhost:8000/callback and select Web API in the checkbox below
-
-3. Copy the secret client key and client key.
-
-**The user also must have FFmpeg in their system**  .
+**The user must have FFmpeg in their system**  .
 
 ```bash
-#windows, in powershell
+#windows,open powershell and type the command given below
 winget install ffmpeg
 
 #macOS
@@ -49,7 +42,7 @@ source spotify/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
-3. Run the Main.py to get started.The script will then ask for your Client ID and Secret Client Key, paste it accordingly.The songs will be downloaded into a folder named Downloads within the spotify folder automatically.
+3. Run the Main.py to get started.The songs will be downloaded into a folder named Downloads within the spotify folder automatically.
 
 4. Deactivate the v_env once you are done.
 ```bash
